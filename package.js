@@ -11,8 +11,8 @@ Package.onUse(function(api) {
 
   api.addFiles('lib/drupalsso.js');
   api.addFiles('client/helpers.js', 'client');
+  api.addFiles('client/sso.js', 'client');
   api.addFiles('server/sso.js', 'server');
-  api.addFiles('sso.js');
 
   api.export('DrupalSSO');
 });
