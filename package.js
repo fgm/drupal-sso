@@ -10,7 +10,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
 
   api.addFiles('lib/startup.js');
-  api.addFiles('client/sso.js', 'client');
+  api.addFiles('client/helpers.js', 'client');
   api.addFiles('server/sso.js', 'server');
   api.addFiles('sso.js');
 
