@@ -1,15 +1,25 @@
 Meteor.startup(function () {
   // Helper names have to be well-formed JS identifiers, so they cannot use a
   // "namespace.symbol" format... but a "namespace$symbol" is usable.
-  Template.registerHelper('drupal_sso$userId', function () {
-    return 42;
+
+  /**
+   * @param {DrupalSSO} sso
+   */
+  Template.registerHelper('drupal_sso$userId', function (sso) {
+    return sso.getUserId();
   });
 
-  Template.registerHelper('drupal_sso$userName', function () {
-    return "yopa";
+  /**
+   * @param {DrupalSSO} sso
+   */
+  Template.registerHelper('drupal_sso$userName', function (sso) {
+    return sso.getUserName();
   });
 
-  Template.registerHelper('drupal_sso$userRoles', function () {
-    return ['foo', 'bar'];
+  /**
+   * @param {DrupalSSO} sso
+   */
+  Template.registerHelper('drupal_sso$userRoles', function (sso) {
+    return sso.getUserRoles();
   });
 });
