@@ -18,7 +18,15 @@ Usage
           "appToken": "the application token you got from the Meteor module"
           }
         }
-* In the app startup, initialize a SSO instance: `SSO = new DrupalSSO();`
+* In the app startup, initialize a SSO instance: `SSO = new DrupalSSO();`. 
+    * You probably want to do this in `client/lib/init.js` to be sure it happens as early as possible.
+* In your template helpers, expose that variable: Spacebars apparently cannot see variables, like this:
+
+        Template.some_template_name.helpers({
+           sso: function () {
+             return SSO;
+           },
+        });
 * Once this is done, your application can use the SSO methods, passive and reactive data sources:
     * Reactive: `userId()`, `userName()`,  `userRoles()`
     * Passive: `state.sessionName`, `state.anonymousName`, `state.online`
