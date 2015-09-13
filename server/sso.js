@@ -1,6 +1,8 @@
 // Cause an error on startup if the Drupal server is unreachable.
 Meteor.startup(function () {
   sso = new DrupalSSO();
+  sso.initServerState(Meteor.settings);
+
   if (!sso.state.online) {
     throw new Meteor.Error('startup', "Could not reach the Drupal server.");
   }
@@ -43,10 +45,39 @@ Meteor.methods({
       };
       Meteor._debug("Error: ", err);
     }
-    Meteor._debug("initState returning", info);
     return info;
   },
 
-  "drupal-sso.whoami": function () {
-  },
+  /**
+   *
+   * @param {string} cookieBlob
+   * @returns {*}
+   */
+  "drupal-sso.whoami": function (cookieBlob) {
+    // sso is a package global, initialized in server/sso.js Meteor.startup().
+    var cookieName = sso.state.cookieName;
+    var cookieValue = sso.getSessionCookie(cookieBlob);
+    var url = sso.settings['drupal-sso'].site + "/meteor/whoami";
+
+    var options = {
+      headers: {
+        'cookie': cookieName + '=' + cookieValue
+      }
+    };
+    Meteor._debug('Checking ' + cookieName + "=" + cookieValue + ' on ' + url);
+    try {
+      var ret = HTTP.get(url, options);
+      info = JSON.parse(ret.content);
+    }
+    catch (err) {
+      info = {
+        'uid': 0,
+        'name': 'Unresolved',
+        'roles': []
+      };
+      Meteor._debug("Error: ", err);
+    }
+
+    return info;
+  }
 });
