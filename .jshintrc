@@ -1,0 +1,9 @@
+//.jshintrc
+{
+  "globals" : {
+
+
+    // A fictive global just added for the last comma.
+    "xyzzy": false
+  }
+}
