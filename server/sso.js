@@ -1,5 +1,9 @@
+Meteor._debug("Loading server/sso");
+
 // Cause an error on startup if the Drupal server is unreachable.
 Meteor.startup(function () {
+  Meteor._debug("Startup server/sso", CHANNEL_NAME, EVENT_NAME);
+
   sso = new DrupalSSO();
   sso.initServerState(Meteor.settings);
 

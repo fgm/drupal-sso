@@ -8,11 +8,15 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
+  api.use('arunoda:streams');
+  api.use('webapp');
 
+  api.addFiles('lib/constants.js');
   api.addFiles('lib/drupalsso.js');
   api.addFiles('client/helpers.js', 'client');
   api.addFiles('client/sso.js', 'client');
   api.addFiles('server/sso.js', 'server');
+  api.addFiles('server/web.js', 'server');
 
   api.export('DrupalSSO');
 });

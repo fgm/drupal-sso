@@ -1,3 +1,4 @@
+Meteor._debug("Loading client/helpers", CHANNEL_NAME, EVENT_NAME);
 Meteor.startup(function () {
   // Helper names have to be well-formed JS identifiers, so they cannot use a
   // "namespace.symbol" format... but a "namespace$symbol" is usable.
