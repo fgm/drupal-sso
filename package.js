@@ -8,7 +8,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
-  api.use('arunoda:streams');
+  api.use('arunoda:streams@0.1.17');
   api.use('webapp');
 
   api.addFiles('lib/constants.js');
