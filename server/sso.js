@@ -62,16 +62,23 @@ Meteor.methods({
     var cookieName = sso.state.cookieName;
     var cookieValue = sso.getSessionCookie(cookieBlob);
     var url = sso.settings['drupal-sso'].site + "/meteor/whoami";
-
     var options = {
       headers: {
+        'accept': 'application/json',
         'cookie': cookieName + '=' + cookieValue
-      }
+      },
+      timeout: 10000,
+      time: true
     };
     Meteor._debug('Checking ' + cookieName + "=" + cookieValue + ' on ' + url);
+    var t0, t1;
     try {
+      t0 = (new Date()).getTime();
       var ret = HTTP.get(url, options);
+      t1 = (new Date()).getTime();
       info = JSON.parse(ret.content);
+      t2 = (new Date()).getTime();
+      Meteor._debug("Success: ", t1 - t0, "msec later:", info);
     }
     catch (err) {
       info = {
@@ -79,7 +86,8 @@ Meteor.methods({
         'name': 'Unresolved',
         'roles': []
       };
-      Meteor._debug("Error: ", err);
+      t1 = (new Date()).getTime();
+      Meteor._debug("Error: ", err, " in ", t1 - t0, "msec");
     }
 
     return info;
