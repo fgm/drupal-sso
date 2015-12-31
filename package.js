@@ -2,7 +2,7 @@ Package.describe({
   name: 'fgm:drupal-sso',
   version: '0.0.3',
   summary: 'A transparent authentication package for Drupal 8',
-  // git: '',
+  git: 'https://github.com/FGM/drupal-sso',
   documentation: 'README.md'
 });
 
