@@ -1,7 +1,7 @@
 Package.describe({
   name: 'fgm:drupal-sso',
-  version: '0.0.3',
-  summary: 'A transparent authentication package for Drupal 8',
+  version: '0.0.4',
+  summary: 'A transparent authentication package for Drupal 8 and Meteor 1.2 : deprecated in favor of fgm:accounts-drupal',
   git: 'https://github.com/FGM/drupal-sso',
   documentation: 'README.md'
 });

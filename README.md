@@ -3,6 +3,9 @@ Drupal SSO
 
 The Drupal SSO package provides transparent authentication integration with a Drupal instance.
 
+It is an initial proof of concept, which evolved into the fgm:accounts-drupal package.
+Use the fgm:accounts-drupal package instead: it has better Meteor integration, 
+and supports Meteor 1.2 and 1.3 instead of just 1.2.
 
 Usage
 -----
